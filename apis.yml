@@ -1,23 +1,114 @@
 aid: enterprisedb
 name: EDB
-description: 'EDB is a company surfaced via the API Evangelist harvest backlog (source: gartner-mq) and
-  added to the network as a stub for full-pipeline profiling.'
+image: https://enterprisedb.com/sites/default/files/2025-06/edb-logo-2025_default-og-image.jpg
+description: EnterpriseDB (EDB) provides enterprise-class PostgreSQL solutions, including the EDB Postgres Platform, advanced management tools,
+  and support services. The company helps organizations deploy, manage, and scale PostgreSQL databases on-premises, in the cloud, and in hybrid
+  environments, offering features like high availability, performance optimization, and AI-driven analytics. EDB’s portfolio includes EDB Postgres
+  Advanced Server, EDB Postgres Distributed, and cloud-native offerings, catering to enterprises seeking robust, open-source database solutions
+  with enterprise-grade support and tooling.
 url: https://raw.githubusercontent.com/api-evangelist/enterprisedb/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:gartner-mq
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-03 (modular-v1; was harvest)
 specificationVersion: '0.20'
 created: '2026-10-03'
 modified: '2026-10-03'
 tags:
 - Company
-apis: []
+- Database
+- PostgreSQL
+- Enterprise
+- OpenSource
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/enterprisedb-agentic-access.yml
+- type: Spectral
+  url: rules/enterprisedb-rules.yml
+- type: JSONLD
+  url: json-ld/enterprisedb-context.jsonld
+- type: Vocabulary
+  url: vocabulary/enterprisedb-vocabulary.yml
+- type: DataModel
+  url: data-model/enterprisedb-data-model.yml
+- type: ChangeLog
+  url: changelog/enterprisedb-changelog.yml
+- type: Compliance
+  url: https://trust.enterprisedb.com/
+- type: Security
+  url: security/enterprisedb-vulnerability-disclosure.yml
+- type: ErrorCatalog
+  url: errors/enterprisedb-problem-types.yml
+- type: Conformance
+  url: conformance/enterprisedb-conformance.yml
+- type: LLMsTxt
+  url: llms/enterprisedb-llms.txt
+- type: SecurityTxt
+  url: well-known/enterprisedb-training-security.txt
+- type: SecurityTxt
+  url: well-known/enterprisedb-status-security.txt
+- type: SecurityTxt
+  url: well-known/enterprisedb-security.txt
+- type: SecurityTxt
+  url: well-known/enterprisedb-enterprisedb-security.txt
+- type: WellKnown
+  url: well-known/enterprisedb-well-known.yml
+- type: Hosts
+  url: hosts/enterprisedb-hosts.yml
+- type: Vendors
+  url: vendors/enterprisedb-vendors.yml
+- type: SDKs
+  url: packages/enterprisedb-packages.yml
+- type: Packages
+  url: packages/enterprisedb-packages.yml
+- type: TermsOfService
+  url: https://www.enterprisedb.com/terms-use
+- type: Support
+  url: https://www.enterprisedb.com/services/support
+- type: StatusPage
+  url: https://status.enterprisedb.com/
+- type: PrivacyPolicy
+  url: https://www.enterprisedb.com/privacy-policy
+- type: Pricing
+  url: https://www.enterprisedb.com/products/plans-comparison
+- type: Login
+  url: https://www.enterprisedb.com/accounts/login
+- type: Leadership
+  url: https://www.enterprisedb.com/company/leadership
+- type: GettingStarted
+  url: https://www.enterprisedb.com/docs/repos/getting_started/get_your_token
+- type: TrustCenter
+  url: security/enterprisedb-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/enterprisedb-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/enterprisedb-domain-security.yml
 - type: Website
   url: https://www.enterprisedb.com
+- type: Documentation
+  url: https://www.enterprisedb.com/docs
+- type: Blog
+  url: https://www.enterprisedb.com/blog
+apis:
+- aid: enterprisedb:enterprisedb-utility-api
+  name: EDB Utility API
+  description: The utility API from EDB — 2 operation(s) for utility.
+  humanURL: https://github.com/EnterpriseDB/pg-backup-api
+  tags:
+  - utility
+  properties:
+  - type: OpenAPI
+    url: openapi/enterprisedb-utility-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/enterprisedb-diagnose-output-schema.json
+x-enrichment:
+  date: '2026-10-03'
+  status: enriched
+  artifacts_added: 25
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

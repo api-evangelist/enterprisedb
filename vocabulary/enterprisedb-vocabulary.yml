@@ -1,0 +1,78 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-vocabulary.py
+source: openapi/pg_backup_api.yaml
+vocabulary:
+  name: EDB Domain Vocabulary
+  description: 'Terms declared by EDB''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions. Derived,
+    not authored.'
+  version: '2026-10-03'
+  terms:
+  - term: DiagnoseOutput
+    definition: 'Object declared by the contract with fields: global, servers.'
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/DiagnoseOutput
+  - term: GlobalConfig
+    definition: 'Object declared by the contract with fields: barman_user, errors_list, log_file, log_level.'
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/GlobalConfig
+  - term: ServerConfig
+    definition: 'Object declared by the contract with fields: active, backup_directory, basebackups_directory, conninfo, description, disabled,
+      errors_directory, incoming_wals_directory, msg_list, name, primary_conninfo, ssh_command. (3 more)'
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/ServerConfig
+  - term: Config
+    definition: 'Object declared by the contract with fields: archiver, archiver_batch_size, backup_compression, backup_compression_format, backup_compression_level,
+      backup_compression_location, backup_method, backup_options, bandwidth_limit, barman_home, barman_lock_directory, basebackup_retry_sleep.
+      (51 more)'
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/Config
+  - term: SystemInfo
+    definition: 'Object declared by the contract with fields: barman_ver, kernel_ver, python_ver, release, rsync_ver, ssh_ver, timestamp.'
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/SystemInfo
+  - term: Backups
+    definition: Details of each backup stored by Barman for this server keyed by Backup ID.
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/Backups
+  - term: CopyStats
+    definition: 'Object declared by the contract with fields: analysis_time, analysis_time_per_item, copy_time, copy_time_per_item, number_of_workers,
+      serialized_copy_time, serialized_copy_time_per_item, total_time.'
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/CopyStats
+  - term: Tablespace
+    definition: A single tablespace represented by an ordered array. The first item MUST be a string containing the name of the tablespace. The
+      second item MUST be a number representing the tablespace OID. The third item MUST be a string containing the path to the tablespace on the
+      PostgreSQL server.
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/Tablespace
+  - term: Status
+    definition: Status information about the PostgreSQL server
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/Status
+  - term: ReplicationSlot
+    definition: Details of the replication slot being used by Barman on this PostgreSQL server in the form of an ordered array. The first item
+      MUST be a string containing the slot_name. The second item MUST be a boolean reflecting the active state of the replication slot. The third
+      item MUST be a string containing the LSN of the oldest WAL which still might be required by the consumer of this slot.
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/ReplicationSlot
+  - term: Wals
+    definition: 'Object declared by the contract with fields: last_archived_wal_per_timeline.'
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/Wals
+  - term: LastArchivedWal
+    definition: 'Object declared by the contract with fields: compression, name, size, time.'
+    tags:
+    - Object
+    source: openapi/pg_backup_api.yaml#/components/schemas/LastArchivedWal

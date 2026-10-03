@@ -1,0 +1,101 @@
+# EDB
+
+> EnterpriseDB (EDB) is a database software and services company that develops EDB Postgres AI, a Postgres-based platform for transactional, analytical, and agentic AI workloads, deployable on-premises, in the cloud, or hybrid. EDB has contributed to Postgres core for 20 years and reports over 1,700 enterprise customers.
+
+EDB Postgres AI unifies transactional, analytical, and agentic AI workloads on a single Postgres-based platform, deployable across on-premises, cloud, and hybrid environments under one control plane. EDB was named a Leader in The Forrester Wave™: Multimodel Data Platforms, Q2 2026, with the highest score in the strategy category of all 14 evaluated vendors.
+
+Product documentation lives at a separate index: [https://www.enterprisedb.com/docs/llms.txt](https://www.enterprisedb.com/docs/llms.txt).
+
+## Platform
+
+- [EDB Postgres AI](https://www.enterprisedb.com/products/edb-postgres-ai): The platform overview.
+- [Core Database](https://www.enterprisedb.com/products/database): Enterprise Postgres.
+- [Analytics](https://www.enterprisedb.com/products/analytics): Converged, warehouse-scale analytics without ETL.
+- [Agentic AI](https://www.enterprisedb.com/products/agentic-ai): Governed agent infrastructure built on Postgres.
+- [Deploy Anywhere](https://www.enterprisedb.com/products/deploy-anywhere): On-prem, cloud, and hybrid deployment.
+- [Hybrid Manager](https://www.enterprisedb.com/products/hybrid-manager): Sovereign control plane across environments.
+- [Agent Factory](https://www.enterprisedb.com/products/agent-factory): Governed runtime for building and deploying agentic AI.
+- [Agentic Database](https://www.enterprisedb.com/products/agentic-database)
+- [Agentic Migrations](https://www.enterprisedb.com/products/agentic-migrations): Legacy database migration to EDB Postgres AI.
+- [Warehouse Analytics](https://www.enterprisedb.com/products/warehouse-analytics)
+- [Distributed HA](https://www.enterprisedb.com/products/distributed-ha): Sub-second failover, up to 99.999% uptime.
+- [Converged Analytics](https://www.enterprisedb.com/products/converged-analytics)
+- [Sovereign Data and AI Factory](https://www.enterprisedb.com/products/sovereign-data-ai-factory)
+- [Data and AI Governance](https://www.enterprisedb.com/products/data-ai-governance)
+- [CloudNativePG](https://www.enterprisedb.com/products/edb-postgres-ai-for-cloudnativepg)
+- [WarehousePG](https://www.enterprisedb.com/products/warehousepg)
+- [PostgreSQL (open source)](https://www.enterprisedb.com/products/postgresql): EDB's contributions to Postgres core.
+
+## Services
+
+- [Sovereign Assurance](https://www.enterprisedb.com/services/sovereign-assurance): Production-ready sovereign AI deployment program.
+- [Managed Experiences](https://www.enterprisedb.com/services/managed-database)
+- [Technical Account Management](https://www.enterprisedb.com/services/technical-account-management)
+- [Customer Support](https://www.enterprisedb.com/services/support)
+
+## Sovereignty
+
+- [What Is Sovereignty?](https://www.enterprisedb.com/what-is-sovereign-ai-data-sovereignty): Data and AI sovereignty, explained.
+- [Sovereignty Matters](https://www.enterprisedb.com/sovereignty-matters): Global study of 2,050 executives.
+- [Sovereignty Matters — Global Report](https://www.enterprisedb.com/resources/sovereignty-matters-report): Full methodology and statistical analysis.
+- [Sovereignty Self-Assessment Tool](https://www.enterprisedb.com/sovereignty-matters/self-assessment)
+- [MIT Technology Review Report](https://www.enterprisedb.com/resources/mit-technology-review-report): Developed in partnership with MIT.
+- [Sovereign AI use case](https://www.enterprisedb.com/use-case/sovereign-ai)
+
+## Blueprints
+
+- [All Blueprints](https://www.enterprisedb.com/blueprints)
+- [BP 01: Real-Time ML Inference](https://www.enterprisedb.com/blueprints/real-time-ml-inference)
+- [BP 02: Agentic Analytics](https://www.enterprisedb.com/blueprints/agentic-analytics)
+- [BP 03: Sovereign Data Lakehouse](https://www.enterprisedb.com/blueprints/sovereign-data-lakehouse)
+
+## Industries and use cases
+
+- [Banking](https://www.enterprisedb.com/industry/bfsi)
+- [Government](https://www.enterprisedb.com/industry/government)
+- [Healthcare](https://www.enterprisedb.com/industry/healthcare)
+- [InfoSec](https://www.enterprisedb.com/industry/infosec)
+- [Utilities](https://www.enterprisedb.com/industry/utiltities)
+- [Legacy App Modernization](https://www.enterprisedb.com/use-case/modernize-legacy-applications)
+- [Hybrid DBaaS](https://www.enterprisedb.com/use-case/hybrid-dbaas)
+- [Omni-Data Platform](https://www.enterprisedb.com/use-case/omni-data-platform)
+- [Secure Open Source Software](https://www.enterprisedb.com/use-case/secure-oss)
+- [Microservices with Kubernetes](https://www.enterprisedb.com/use-case/microservices-and-kubernetes)
+
+## Resources
+
+- [Product Documentation](https://www.enterprisedb.com/docs): EDB Postgres AI product documentation.
+- [Benchmark Reports](https://www.enterprisedb.com/resources/benchmarks)
+- [Customer Success Stories](https://www.enterprisedb.com/resources/customer-story)
+- [Forrester Wave report](https://www.enterprisedb.com/resources/edb-named-leader-forrester-wave): EDB named a Leader, Multimodel Data Platforms, Q2 2026.
+- [Blog](https://www.enterprisedb.com/blog)
+- [Webinars](https://www.enterprisedb.com/resources/webinars)
+- [White Papers](https://www.enterprisedb.com/resources/white-papers)
+- [Podcast: AI and Data Horizons](https://www.enterprisedb.com/ai-data-horizons)
+- [Demos](https://www.enterprisedb.com/demos)
+
+## Get started
+
+- [Download PostgreSQL](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads): Installers for macOS and Windows; Linux users are directed to platform-native packages.
+- [Documentation index](https://www.enterprisedb.com/docs/llms.txt): Machine-readable index of all product documentation. Markdown source is available for any page beneath /docs/.
+- [Plans comparison](https://www.enterprisedb.com/products/plans-comparison): What is included at each tier.
+- [Demos](https://www.enterprisedb.com/demos): Recorded product demonstrations.
+- [Training](https://www.enterprisedb.com/training): Courses and certification.
+- [Support](https://www.enterprisedb.com/support-center): Support portal and contact routes.
+
+## Company
+
+- [About EDB](https://www.enterprisedb.com/company)
+- [Leadership](https://www.enterprisedb.com/company/leadership)
+- [Newsroom](https://www.enterprisedb.com/press-room)
+- [Careers](https://www.enterprisedb.com/careers)
+- [Trust Center](https://trust.enterprisedb.com/): Security posture and compliance.
+
+## Optional
+
+- [Training](https://www.enterprisedb.com/training)
+- [Support](https://www.enterprisedb.com/support-center)
+- [Partners](https://www.enterprisedb.com/partners/find-a-partner)
+- [Plans comparison](https://www.enterprisedb.com/products/plans-comparison)
+
+Last reviewed: 2026-08-20.

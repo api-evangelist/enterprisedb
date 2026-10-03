@@ -1,0 +1,4 @@
+Contact: mailto:security@enterprisedb.com
+Expires: 2026-06-30T05:00:00.000Z
+Preferred-Languages: en
+Canonical: https://status.enterprisedb.com/.well-known/security.txt

@@ -1,0 +1,619 @@
+{
+  "@context": {
+    "@vocab": "https://enterprisedb.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "enterprisedb": "https://enterprisedb.com/schema#",
+    "DiagnoseOutput": "enterprisedb:DiagnoseOutput",
+    "global": {
+      "@id": "enterprisedb:global"
+    },
+    "servers": {
+      "@id": "enterprisedb:servers"
+    },
+    "GlobalConfig": "enterprisedb:GlobalConfig",
+    "barman_user": {
+      "@id": "enterprisedb:barman_user",
+      "@type": "xsd:string"
+    },
+    "errors_list": {
+      "@id": "enterprisedb:errors_list",
+      "@container": "@list"
+    },
+    "log_file": {
+      "@id": "enterprisedb:log_file",
+      "@type": "xsd:string"
+    },
+    "log_level": {
+      "@id": "enterprisedb:log_level",
+      "@type": "xsd:string"
+    },
+    "ServerConfig": "enterprisedb:ServerConfig",
+    "active": {
+      "@id": "enterprisedb:active",
+      "@type": "xsd:boolean"
+    },
+    "backup_directory": {
+      "@id": "enterprisedb:backup_directory",
+      "@type": "xsd:string"
+    },
+    "basebackups_directory": {
+      "@id": "enterprisedb:basebackups_directory",
+      "@type": "xsd:string"
+    },
+    "conninfo": {
+      "@id": "enterprisedb:conninfo",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "enterprisedb:description",
+      "@type": "xsd:string"
+    },
+    "disabled": {
+      "@id": "enterprisedb:disabled",
+      "@type": "xsd:boolean"
+    },
+    "errors_directory": {
+      "@id": "enterprisedb:errors_directory",
+      "@type": "xsd:string"
+    },
+    "incoming_wals_directory": {
+      "@id": "enterprisedb:incoming_wals_directory",
+      "@type": "xsd:string"
+    },
+    "msg_list": {
+      "@id": "enterprisedb:msg_list",
+      "@container": "@list"
+    },
+    "name": {
+      "@id": "enterprisedb:name",
+      "@type": "xsd:string"
+    },
+    "primary_conninfo": {
+      "@id": "enterprisedb:primary_conninfo",
+      "@type": "xsd:string"
+    },
+    "ssh_command": {
+      "@id": "enterprisedb:ssh_command",
+      "@type": "xsd:string"
+    },
+    "streaming_conninfo": {
+      "@id": "enterprisedb:streaming_conninfo",
+      "@type": "xsd:string"
+    },
+    "streaming_wals_directory": {
+      "@id": "enterprisedb:streaming_wals_directory",
+      "@type": "xsd:string"
+    },
+    "wals_directory": {
+      "@id": "enterprisedb:wals_directory",
+      "@type": "xsd:string"
+    },
+    "Config": "enterprisedb:Config",
+    "archiver": {
+      "@id": "enterprisedb:archiver",
+      "@type": "xsd:boolean"
+    },
+    "archiver_batch_size": {
+      "@id": "enterprisedb:archiver_batch_size",
+      "@type": "xsd:integer"
+    },
+    "backup_compression": {
+      "@id": "enterprisedb:backup_compression",
+      "@type": "xsd:string"
+    },
+    "backup_compression_format": {
+      "@id": "enterprisedb:backup_compression_format",
+      "@type": "xsd:string"
+    },
+    "backup_compression_level": {
+      "@id": "enterprisedb:backup_compression_level",
+      "@type": "xsd:integer"
+    },
+    "backup_compression_location": {
+      "@id": "enterprisedb:backup_compression_location",
+      "@type": "xsd:string"
+    },
+    "backup_method": {
+      "@id": "enterprisedb:backup_method",
+      "@type": "xsd:string"
+    },
+    "backup_options": {
+      "@id": "enterprisedb:backup_options",
+      "@type": "xsd:string"
+    },
+    "bandwidth_limit": {
+      "@id": "enterprisedb:bandwidth_limit",
+      "@type": "xsd:integer"
+    },
+    "barman_home": {
+      "@id": "enterprisedb:barman_home",
+      "@type": "xsd:string"
+    },
+    "barman_lock_directory": {
+      "@id": "enterprisedb:barman_lock_directory",
+      "@type": "xsd:string"
+    },
+    "basebackup_retry_sleep": {
+      "@id": "enterprisedb:basebackup_retry_sleep",
+      "@type": "xsd:integer"
+    },
+    "basebackup_retry_times": {
+      "@id": "enterprisedb:basebackup_retry_times",
+      "@type": "xsd:integer"
+    },
+    "check_timeout": {
+      "@id": "enterprisedb:check_timeout",
+      "@type": "xsd:integer"
+    },
+    "compression": {
+      "@id": "enterprisedb:compression",
+      "@type": "xsd:string"
+    },
+    "configuration_files_directory": {
+      "@id": "enterprisedb:configuration_files_directory",
+      "@type": "xsd:string"
+    },
+    "create_slot": {
+      "@id": "enterprisedb:create_slot",
+      "@type": "xsd:string"
+    },
+    "custom_compression_filter": {
+      "@id": "enterprisedb:custom_compression_filter",
+      "@type": "xsd:string"
+    },
+    "custom_compression_magic": {
+      "@id": "enterprisedb:custom_compression_magic",
+      "@type": "xsd:string"
+    },
+    "custom_decompression_filter": {
+      "@id": "enterprisedb:custom_decompression_filter",
+      "@type": "xsd:string"
+    },
+    "forward_config_path": {
+      "@id": "enterprisedb:forward_config_path",
+      "@type": "xsd:boolean"
+    },
+    "immediate_checkpoint": {
+      "@id": "enterprisedb:immediate_checkpoint",
+      "@type": "xsd:boolean"
+    },
+    "last_backup_maximum_age": {
+      "@id": "enterprisedb:last_backup_maximum_age",
+      "@type": "xsd:string"
+    },
+    "last_backup_minimum_size": {
+      "@id": "enterprisedb:last_backup_minimum_size",
+      "@type": "xsd:integer"
+    },
+    "last_wal_maximum_age": {
+      "@id": "enterprisedb:last_wal_maximum_age",
+      "@type": "xsd:string"
+    },
+    "max_incoming_wals_queue": {
+      "@id": "enterprisedb:max_incoming_wals_queue",
+      "@type": "xsd:integer"
+    },
+    "minimum_redundancy": {
+      "@id": "enterprisedb:minimum_redundancy",
+      "@type": "xsd:integer"
+    },
+    "network_compression": {
+      "@id": "enterprisedb:network_compression",
+      "@type": "xsd:boolean"
+    },
+    "parallel_jobs": {
+      "@id": "enterprisedb:parallel_jobs",
+      "@type": "xsd:integer"
+    },
+    "path_prefix": {
+      "@id": "enterprisedb:path_prefix",
+      "@type": "xsd:string"
+    },
+    "post_archive_retry_script": {
+      "@id": "enterprisedb:post_archive_retry_script",
+      "@type": "xsd:string"
+    },
+    "post_archive_script": {
+      "@id": "enterprisedb:post_archive_script",
+      "@type": "xsd:string"
+    },
+    "post_backup_retry_script": {
+      "@id": "enterprisedb:post_backup_retry_script",
+      "@type": "xsd:string"
+    },
+    "post_backup_script": {
+      "@id": "enterprisedb:post_backup_script",
+      "@type": "xsd:string"
+    },
+    "post_delete_retry_script": {
+      "@id": "enterprisedb:post_delete_retry_script",
+      "@type": "xsd:string"
+    },
+    "post_delete_script": {
+      "@id": "enterprisedb:post_delete_script",
+      "@type": "xsd:string"
+    },
+    "post_recovery_retry_script": {
+      "@id": "enterprisedb:post_recovery_retry_script",
+      "@type": "xsd:string"
+    },
+    "post_recovery_script": {
+      "@id": "enterprisedb:post_recovery_script",
+      "@type": "xsd:string"
+    },
+    "post_wal_delete_retry_script": {
+      "@id": "enterprisedb:post_wal_delete_retry_script",
+      "@type": "xsd:string"
+    },
+    "post_wal_delete_script": {
+      "@id": "enterprisedb:post_wal_delete_script",
+      "@type": "xsd:string"
+    },
+    "pre_archive_retry_script": {
+      "@id": "enterprisedb:pre_archive_retry_script",
+      "@type": "xsd:string"
+    },
+    "pre_archive_script": {
+      "@id": "enterprisedb:pre_archive_script",
+      "@type": "xsd:string"
+    },
+    "pre_backup_retry_script": {
+      "@id": "enterprisedb:pre_backup_retry_script",
+      "@type": "xsd:string"
+    },
+    "pre_backup_script": {
+      "@id": "enterprisedb:pre_backup_script",
+      "@type": "xsd:string"
+    },
+    "pre_delete_retry_script": {
+      "@id": "enterprisedb:pre_delete_retry_script",
+      "@type": "xsd:string"
+    },
+    "pre_delete_script": {
+      "@id": "enterprisedb:pre_delete_script",
+      "@type": "xsd:string"
+    },
+    "pre_recovery_retry_script": {
+      "@id": "enterprisedb:pre_recovery_retry_script",
+      "@type": "xsd:string"
+    },
+    "pre_recovery_script": {
+      "@id": "enterprisedb:pre_recovery_script",
+      "@type": "xsd:string"
+    },
+    "pre_wal_delete_retry_script": {
+      "@id": "enterprisedb:pre_wal_delete_retry_script",
+      "@type": "xsd:string"
+    },
+    "pre_wal_delete_script": {
+      "@id": "enterprisedb:pre_wal_delete_script",
+      "@type": "xsd:string"
+    },
+    "primary_ssh_command": {
+      "@id": "enterprisedb:primary_ssh_command",
+      "@type": "xsd:string"
+    },
+    "recovery_options": {
+      "@id": "enterprisedb:recovery_options",
+      "@type": "xsd:string"
+    },
+    "recovery_staging_path": {
+      "@id": "enterprisedb:recovery_staging_path",
+      "@type": "xsd:string"
+    },
+    "retention_policy": {
+      "@id": "enterprisedb:retention_policy",
+      "@type": "xsd:string"
+    },
+    "retention_policy_mode": {
+      "@id": "enterprisedb:retention_policy_mode",
+      "@type": "xsd:string"
+    },
+    "reuse_backup": {
+      "@id": "enterprisedb:reuse_backup",
+      "@type": "xsd:string"
+    },
+    "slot_name": {
+      "@id": "enterprisedb:slot_name",
+      "@type": "xsd:string"
+    },
+    "streaming_archiver": {
+      "@id": "enterprisedb:streaming_archiver",
+      "@type": "xsd:boolean"
+    },
+    "streaming_archiver_batch_size": {
+      "@id": "enterprisedb:streaming_archiver_batch_size",
+      "@type": "xsd:integer"
+    },
+    "streaming_archiver_name": {
+      "@id": "enterprisedb:streaming_archiver_name",
+      "@type": "xsd:string"
+    },
+    "streaming_backup_name": {
+      "@id": "enterprisedb:streaming_backup_name",
+      "@type": "xsd:string"
+    },
+    "tablespace_bandwidth_limit": {
+      "@id": "enterprisedb:tablespace_bandwidth_limit",
+      "@type": "xsd:string"
+    },
+    "wal_retention_policy": {
+      "@id": "enterprisedb:wal_retention_policy",
+      "@type": "xsd:string"
+    },
+    "SystemInfo": "enterprisedb:SystemInfo",
+    "barman_ver": {
+      "@id": "enterprisedb:barman_ver",
+      "@type": "xsd:string"
+    },
+    "kernel_ver": {
+      "@id": "enterprisedb:kernel_ver",
+      "@type": "xsd:string"
+    },
+    "python_ver": {
+      "@id": "enterprisedb:python_ver",
+      "@type": "xsd:string"
+    },
+    "release": {
+      "@id": "enterprisedb:release",
+      "@type": "xsd:string"
+    },
+    "rsync_ver": {
+      "@id": "enterprisedb:rsync_ver",
+      "@type": "xsd:string"
+    },
+    "ssh_ver": {
+      "@id": "enterprisedb:ssh_ver",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "enterprisedb:timestamp",
+      "@type": "xsd:string"
+    },
+    "CopyStats": "enterprisedb:CopyStats",
+    "analysis_time": {
+      "@id": "enterprisedb:analysis_time",
+      "@type": "xsd:decimal"
+    },
+    "analysis_time_per_item": {
+      "@id": "enterprisedb:analysis_time_per_item"
+    },
+    "copy_time": {
+      "@id": "enterprisedb:copy_time",
+      "@type": "xsd:decimal"
+    },
+    "copy_time_per_item": {
+      "@id": "enterprisedb:copy_time_per_item"
+    },
+    "number_of_workers": {
+      "@id": "enterprisedb:number_of_workers",
+      "@type": "xsd:integer"
+    },
+    "serialized_copy_time": {
+      "@id": "enterprisedb:serialized_copy_time",
+      "@type": "xsd:decimal"
+    },
+    "serialized_copy_time_per_item": {
+      "@id": "enterprisedb:serialized_copy_time_per_item"
+    },
+    "total_time": {
+      "@id": "enterprisedb:total_time",
+      "@type": "xsd:decimal"
+    },
+    "Status": "enterprisedb:Status",
+    "archive_command": {
+      "@id": "enterprisedb:archive_command",
+      "@type": "xsd:string"
+    },
+    "archive_mode": {
+      "@id": "enterprisedb:archive_mode",
+      "@type": "xsd:string"
+    },
+    "archive_timeout": {
+      "@id": "enterprisedb:archive_timeout",
+      "@type": "xsd:integer"
+    },
+    "archived_count": {
+      "@id": "enterprisedb:archived_count",
+      "@type": "xsd:integer"
+    },
+    "checkpoint_timeout": {
+      "@id": "enterprisedb:checkpoint_timeout",
+      "@type": "xsd:integer"
+    },
+    "config_file": {
+      "@id": "enterprisedb:config_file",
+      "@type": "xsd:string"
+    },
+    "connection_error": {
+      "@id": "enterprisedb:connection_error",
+      "@type": "xsd:string"
+    },
+    "current_archived_wals_per_second": {
+      "@id": "enterprisedb:current_archived_wals_per_second",
+      "@type": "xsd:decimal"
+    },
+    "current_lsn": {
+      "@id": "enterprisedb:current_lsn",
+      "@type": "xsd:string"
+    },
+    "current_size": {
+      "@id": "enterprisedb:current_size",
+      "@type": "xsd:decimal"
+    },
+    "current_xlog": {
+      "@id": "enterprisedb:current_xlog",
+      "@type": "xsd:string"
+    },
+    "data_checksums": {
+      "@id": "enterprisedb:data_checksums",
+      "@type": "xsd:string"
+    },
+    "data_directory": {
+      "@id": "enterprisedb:data_directory",
+      "@type": "xsd:string"
+    },
+    "failed_count": {
+      "@id": "enterprisedb:failed_count",
+      "@type": "xsd:integer"
+    },
+    "has_backup_privileges": {
+      "@id": "enterprisedb:has_backup_privileges",
+      "@type": "xsd:boolean"
+    },
+    "hba_file": {
+      "@id": "enterprisedb:hba_file",
+      "@type": "xsd:string"
+    },
+    "hot_standby": {
+      "@id": "enterprisedb:hot_standby",
+      "@type": "xsd:string"
+    },
+    "ident_file": {
+      "@id": "enterprisedb:ident_file",
+      "@type": "xsd:string"
+    },
+    "is_archiving": {
+      "@id": "enterprisedb:is_archiving",
+      "@type": "xsd:boolean"
+    },
+    "is_in_recovery": {
+      "@id": "enterprisedb:is_in_recovery",
+      "@type": "xsd:boolean"
+    },
+    "is_superuser": {
+      "@id": "enterprisedb:is_superuser",
+      "@type": "xsd:boolean"
+    },
+    "last_archived_time": {
+      "@id": "enterprisedb:last_archived_time",
+      "@type": "xsd:string"
+    },
+    "last_archived_wal": {
+      "@id": "enterprisedb:last_archived_wal",
+      "@type": "xsd:string"
+    },
+    "last_failed_time": {
+      "@id": "enterprisedb:last_failed_time",
+      "@type": "xsd:string"
+    },
+    "last_failed_wal": {
+      "@id": "enterprisedb:last_failed_wal",
+      "@type": "xsd:string"
+    },
+    "max_replication_slots": {
+      "@id": "enterprisedb:max_replication_slots",
+      "@type": "xsd:string"
+    },
+    "max_wal_senders": {
+      "@id": "enterprisedb:max_wal_senders",
+      "@type": "xsd:string"
+    },
+    "pg_receivexlog_compatible": {
+      "@id": "enterprisedb:pg_receivexlog_compatible",
+      "@type": "xsd:boolean"
+    },
+    "pg_receivexlog_installed": {
+      "@id": "enterprisedb:pg_receivexlog_installed",
+      "@type": "xsd:boolean"
+    },
+    "pg_receivexlog_path": {
+      "@id": "enterprisedb:pg_receivexlog_path",
+      "@type": "xsd:string"
+    },
+    "pg_receivexlog_supports_slots": {
+      "@id": "enterprisedb:pg_receivexlog_supports_slots",
+      "@type": "xsd:boolean"
+    },
+    "pg_receivexlog_synchronous": {
+      "@id": "enterprisedb:pg_receivexlog_synchronous",
+      "@type": "xsd:boolean"
+    },
+    "pg_receivexlog_version": {
+      "@id": "enterprisedb:pg_receivexlog_version",
+      "@type": "xsd:string"
+    },
+    "postgresql_systemid": {
+      "@id": "enterprisedb:postgresql_systemid",
+      "@type": "xsd:string"
+    },
+    "replication_slot": {
+      "@id": "enterprisedb:replication_slot",
+      "@type": "@id"
+    },
+    "replication_slot_support": {
+      "@id": "enterprisedb:replication_slot_support",
+      "@type": "xsd:boolean"
+    },
+    "server_txt_version": {
+      "@id": "enterprisedb:server_txt_version",
+      "@type": "xsd:string"
+    },
+    "stats_reset": {
+      "@id": "enterprisedb:stats_reset",
+      "@type": "xsd:string"
+    },
+    "streaming": {
+      "@id": "enterprisedb:streaming",
+      "@type": "xsd:boolean"
+    },
+    "streaming_supported": {
+      "@id": "enterprisedb:streaming_supported",
+      "@type": "xsd:boolean"
+    },
+    "streaming_systemid": {
+      "@id": "enterprisedb:streaming_systemid",
+      "@type": "xsd:string"
+    },
+    "synchronous_standby_names": {
+      "@id": "enterprisedb:synchronous_standby_names",
+      "@container": "@list"
+    },
+    "timeline": {
+      "@id": "enterprisedb:timeline",
+      "@type": "xsd:integer"
+    },
+    "wal_compression": {
+      "@id": "enterprisedb:wal_compression",
+      "@type": "xsd:string"
+    },
+    "wal_keep_size": {
+      "@id": "enterprisedb:wal_keep_size",
+      "@type": "xsd:string"
+    },
+    "wal_level": {
+      "@id": "enterprisedb:wal_level",
+      "@type": "xsd:string"
+    },
+    "xlog_segment_size": {
+      "@id": "enterprisedb:xlog_segment_size",
+      "@type": "xsd:integer"
+    },
+    "xlogpos": {
+      "@id": "enterprisedb:xlogpos",
+      "@type": "xsd:string"
+    },
+    "Wals": "enterprisedb:Wals",
+    "last_archived_wal_per_timeline": {
+      "@id": "enterprisedb:last_archived_wal_per_timeline"
+    },
+    "LastArchivedWal": "enterprisedb:LastArchivedWal",
+    "size": {
+      "@id": "enterprisedb:size",
+      "@type": "xsd:integer"
+    },
+    "time": {
+      "@id": "enterprisedb:time",
+      "@type": "xsd:decimal"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "EDB API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects EDB's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-03) from openapi/pg_backup_api.yaml.",
+  "dcterms:created": "2026-10-03",
+  "dcterms:source": [
+    "openapi/pg_backup_api.yaml"
+  ]
+}

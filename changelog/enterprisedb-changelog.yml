@@ -1,0 +1,19 @@
+generated: '2026-10-03'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://www.enterprisedb.com/products/agentic-migrations
+sources:
+- https://www.enterprisedb.com/products/agentic-migrations
+- https://www.enterprisedb.com/docs/edb-postgres-ai/latest/hybrid-manager/using_hybrid_manager/migration
+- https://www.enterprisedb.com/docs/clickhouse/latest/release_notes/rel_notes26_3_13_31
+entries:
+- breaking: false
+  highlights:
+  - 'Released: 24 June 2026'
+  - EDB Postgres AI for ClickHouse 26.3.13.31 is the initial release, including the Kubernetes operator.
+  - Based on the open-source ClickHouse 26.3.13.31 LTS release.
+  - Includes the EDB ClickHouse Kubernetes operator 0.27.1+1edb1 , tracking upstream Altinity clickhouse-operator release-0.27.1.
+  date: '2026-06-24'
+current_version: 26.3.13.31
+note: Versioning scheme not explicitly stated on the page.
+docs: https://www.enterprisedb.com/products/agentic-migrations

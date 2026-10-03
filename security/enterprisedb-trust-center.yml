@@ -1,0 +1,16 @@
+generated: '2026-10-03'
+method: searched
+probe: true
+source: https://trust.enterprisedb.com/
+url: https://trust.enterprisedb.com/
+certifications:
+- SOC 2
+- GDPR
+- CSA STAR
+evidence:
+- source: https://trust.enterprisedb.com/
+  keywords:
+  - soc 2
+  - trust center
+  - gdpr
+  - csa star

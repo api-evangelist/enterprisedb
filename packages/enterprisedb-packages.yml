@@ -1,0 +1,25 @@
+generated: '2026-10-03'
+method: searched
+source: https://search.maven.org/solrsearch/select?q=EnterpriseDB&rows=20&wt=json
+packages:
+  - name: hibernate-edb-jdbc
+    registry: maven
+    url: https://search.maven.org/artifact/com.enterprisedb/hibernate-edb-jdbc
+    language: java
+    official: true
+    version: "1.0.1"
+    published: 2023-06-15
+  - name: edb-jdbc
+    registry: maven
+    url: https://search.maven.org/artifact/com.enterprisedb/edb-jdbc
+    language: java
+    official: true
+    version: "42.7.3.3"
+    published: 2025-09-19
+  - name: edb-pge-jdbc
+    registry: maven
+    url: https://search.maven.org/artifact/com.enterprisedb/edb-pge-jdbc
+    language: java
+    official: true
+    version: "42.7.3.1"
+    published: 2024-10-15
