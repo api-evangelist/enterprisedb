@@ -53,6 +53,14 @@ paths:
                 type: string
 components:
   schemas:
+    Tablespace:
+      description: 'A single tablespace represented by an ordered array. The first item MUST be a string containing the name of the tablespace. The second item MUST be a number representing the tablespace OID. The third item MUST be a string containing the path to the tablespace on the PostgreSQL server.
+
+        '
+      type: array
+      items: {}
+      maxItems: 3
+      minItems: 3
     CopyStats:
       properties:
         analysis_time:
@@ -131,47 +139,304 @@ components:
       required:
       - copy_time
       - total_time
-    DiagnoseOutput:
+    Status:
+      description: Status information about the PostgreSQL server
       type: object
-      required:
-      - global
-      - servers
       properties:
-        global:
-          type: object
-          properties:
-            config:
-              $ref: '#/components/schemas/GlobalConfig'
-            system_info:
-              $ref: '#/components/schemas/SystemInfo'
-          required:
-          - system_info
-        servers:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              backups:
-                $ref: '#/components/schemas/Backups'
-              config:
-                $ref: '#/components/schemas/ServerConfig'
-              status:
-                $ref: '#/components/schemas/Status'
-              wals:
-                $ref: '#/components/schemas/Wals'
-            required:
-            - backups
-            - config
-            - status
-            - wals
-    Tablespace:
-      description: 'A single tablespace represented by an ordered array. The first item MUST be a string containing the name of the tablespace. The second item MUST be a number representing the tablespace OID. The third item MUST be a string containing the path to the tablespace on the PostgreSQL server.
+        archive_command:
+          description: The current value of archive_command on the PostgreSQL server
+          type:
+          - string
+          - 'null'
+        archive_mode:
+          description: The current value of archive_mode on the PostgreSQL server
+          type:
+          - string
+          - 'null'
+        archive_timeout:
+          description: 'The current value of archive_timeout (in seconds) on the PostgreSQL server
 
-        '
-      type: array
-      items: {}
-      maxItems: 3
-      minItems: 3
+            '
+          type: integer
+        archived_count:
+          description: 'The number of WAL files that have been successfully archived by the PostgreSQL server
+
+            '
+          type: integer
+        checkpoint_timeout:
+          description: 'The current value of checkpoint_timeout (in seconds) on the PostgreSQL server
+
+            '
+          type: integer
+        config_file:
+          description: 'The current path to the `postgresql.conf` file of the PostgreSQL server
+
+            '
+          type: string
+        connection_error:
+          description: 'Error message in the event that barman cannot connect to the PostgreSQL server
+
+            '
+          type: string
+        current_archived_wals_per_second:
+          description: 'The WAL archive rate of the PostgreSQL server calculated over the time since the last stats reset
+
+            '
+          type: number
+        current_lsn:
+          description: The current LSN of the PostgreSQL server
+          type: string
+        current_size:
+          description: The total size of the PostgreSQL server in bytes
+          type: number
+        current_xlog:
+          description: The current WAL of the PostgreSQL server
+          type:
+          - string
+          - 'null'
+        data_checksums:
+          description: 'Whether data checksums are enabled for the PostgreSQL server - can be either `on` or `off`
+
+            '
+          type: string
+        data_directory:
+          description: The current path to the PGDATA directory of the PostgreSQL server
+          type:
+          - string
+          - 'null'
+        failed_count:
+          description: 'The number of failed attempts for archiving WAL files by the PostgreSQL server
+
+            '
+          type: integer
+        has_backup_privileges:
+          description: 'Whether the configured user has the PostgreSQL privileges required in order to take a backup
+
+            '
+          type: boolean
+        hba_file:
+          description: The current path to the `pg_hba.conf` file of the PostgreSQL server
+          type: string
+        hot_standby:
+          description: The current value of hot_standby on the PostgreSQL server
+          type: string
+        ident_file:
+          description: 'The current path to the `pg_ident.conf` file of the PostgreSQL server
+
+            '
+          type: string
+        is_archiving:
+          description: 'Whether the PostgreSQL server is currently archiving WALs (as determined by Barman from the content of `pg_stat_archiver`)
+
+            '
+          type: boolean
+        is_in_recovery:
+          description: 'Whether the PostgreSQL server is currently in recovery (as determined by Barman using `pg_is_in_recovery()`)
+
+            '
+          type:
+          - boolean
+          - 'null'
+        is_superuser:
+          description: Whether the configured user has superuser privileges
+          type:
+          - boolean
+          - 'null'
+        last_archived_time:
+          description: 'The time that a WAL was most recently archived by PostgreSQL (in ISO 8601 in the local timezone of the server)
+
+            '
+          type: string
+          pattern: ^\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+[+-][0-2]\d:[0-5]\d$
+          example: '2020-01-31T00:00:00.0000+01:00'
+        last_archived_wal:
+          description: The WAL segment which was most recently archived by PostgreSQL
+          type: string
+        last_failed_time:
+          description: 'The time of the most recent WAL archive failure on the PostgreSQL server (in ISO 8601 in the local timezone of the server)
+
+            '
+          type:
+          - string
+          - 'null'
+          pattern: ^\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+[+-][0-2]\d:[0-5]\d$
+          example: '2020-01-31T00:00:00.0000+01:00'
+        last_failed_wal:
+          description: 'The WAL segment which was being archived during the most recent failed WAL archive attempt
+
+            '
+          type:
+          - string
+          - 'null'
+        max_replication_slots:
+          description: The current value of max_replication_slots on the PostgreSQL server
+          type: string
+        max_wal_senders:
+          description: The current value of max_wal_senders on the PostgreSQL server
+          type: string
+        pg_receivexlog_compatible:
+          description: 'Whether the pg_receivewal binary used by Barman is compatible with the PostgreSQL server
+
+            '
+          type:
+          - boolean
+          - 'null'
+        pg_receivexlog_installed:
+          description: 'Whether the pg_receivewal binary is installed and available to Barman
+
+            '
+          type:
+          - boolean
+          - 'null'
+        pg_receivexlog_path:
+          description: 'Path to the pg_receivewal binary used by Barman
+
+            '
+          type:
+          - string
+          - 'null'
+        pg_receivexlog_supports_slots:
+          description: 'Whether the pg_receivewal binary available to Barman supports replication slots
+
+            '
+          type:
+          - boolean
+          - 'null'
+        pg_receivexlog_synchronous:
+          description: 'Whether synchronous replication will be used by pg_receivewal for this PostgreSQL server
+
+            '
+          type:
+          - boolean
+          - 'null'
+        pg_receivexlog_version:
+          description: The version of the pg_receivewal binary used by Barman
+          type:
+          - string
+          - 'null'
+        postgresql_systemid:
+          description: The system identifier of the PostgreSQL server
+          type:
+          - string
+          - 'null'
+        replication_slot:
+          $ref: '#/components/schemas/ReplicationSlot'
+        replication_slot_support:
+          description: Whether the PostgreSQL server supports replication slots
+          type:
+          - boolean
+          - 'null'
+        server_txt_version:
+          description: The version of the PostgreSQL server as human-readable text
+          type:
+          - string
+          - 'null'
+        stats_reset:
+          description: 'The time at which statistics were last reset for this PostgreSQL server (in ISO 8601 format in UTC)
+
+            '
+          type: string
+          pattern: ^\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+[+-][0-2]\d:[0-5]\d$
+          example: '2020-01-31T00:00:00.0000+01:00'
+        streaming:
+          description: Whether the streaming_conninfo connection is currently streaming
+          type:
+          - boolean
+          - 'null'
+        streaming_supported:
+          description: Whether streaming replication is supported by the PostgreSQL server
+          type:
+          - boolean
+          - 'null'
+        streaming_systemid:
+          description: 'The systemid returned by calling IDENTIFY_SYSTEM using the streaming_conninfo connection
+
+            '
+          type:
+          - string
+          - 'null'
+        synchronous_standby_names:
+          description: 'The current value of synchronous_standby_names on the PostgreSQL server
+
+            '
+          type:
+          - array
+          - 'null'
+          items:
+            description: 'Name of a standby server which can support synchronous replication
+
+              '
+            type: string
+        timeline:
+          description: The current timeline of the PostgreSQL server
+          type:
+          - integer
+          - 'null'
+        wal_compression:
+          description: The current value of wal_compression on the PostgreSQL server
+          type: string
+        wal_keep_size:
+          description: The current value of wal_keep_size on the PostgreSQL server
+          type: string
+        wal_level:
+          description: The current value of wal_level on the PostgreSQL server
+          type: string
+        xlog_segment_size:
+          description: 'The current WAL segment size in bytes as reported by the PostgreSQL server
+
+            '
+          type: integer
+          format: int64
+        xlogpos:
+          description: 'The current WAL flush location returned by the streaming_conninfo connection
+
+            '
+          type:
+          - string
+          - 'null'
+    LastArchivedWal:
+      type: object
+      properties:
+        compression:
+          description: Compression algorithm used to compress the WAL
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the WAL segment
+          type: string
+        size:
+          description: Size in bytes of the WAL stored on the Barman server
+          type: integer
+          format: int64
+        time:
+          description: 'Timestamp in epoch time format representing the time this WAL was archived by Barman
+
+            '
+          type: number
+    GlobalConfig:
+      allOf:
+      - $ref: '#/components/schemas/Config'
+      properties:
+        barman_user:
+          description: System user that runs Barman
+          type: string
+        errors_list:
+          description: List of configuration errors affecting multiple servers
+          type: array
+          items:
+            description: 'An error detected for a combination of servers while parsing the config
+
+              '
+            type: string
+        log_file:
+          description: Location of Barman's log file
+          type: string
+        log_level:
+          description: Level of logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+          type: string
+      required:
+      - errors_list
     Config:
       type: object
       properties:
@@ -514,29 +779,44 @@ components:
         wal_retention_policy:
           description: Policy for retention of archive logs (WAL files)
           type: string
-    GlobalConfig:
-      allOf:
-      - $ref: '#/components/schemas/Config'
+    SystemInfo:
+      type: object
       properties:
-        barman_user:
-          description: System user that runs Barman
+        barman_ver:
+          description: Version of Barman which generated the diagnose output
           type: string
-        errors_list:
-          description: List of configuration errors affecting multiple servers
-          type: array
-          items:
-            description: 'An error detected for a combination of servers while parsing the config
+        kernel_ver:
+          description: Information about the OS kernel on which Barman server is running
+          type: string
+        python_ver:
+          description: Version of Python used by Barman server
+          type: string
+        release:
+          description: 'Information about the specific OS release on which Barman server is running
 
-              '
-            type: string
-        log_file:
-          description: Location of Barman's log file
+            '
           type: string
-        log_level:
-          description: Level of logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+        rsync_ver:
+          description: Version of Rsync used by Barman server
           type: string
+        ssh_ver:
+          description: Version of ssh used by Barman server
+          type: string
+        timestamp:
+          description: 'The system time of the Barman server (in ISO 8601 format in the local timezone of the server)
+
+            '
+          type: string
+          pattern: ^\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+[+-][0-2]\d:[0-5]\d$
+          example: '2020-01-31T00:00:00.0000+01:00'
       required:
-      - errors_list
+      - barman_ver
+      - kernel_ver
+      - python_ver
+      - release
+      - rsync_ver
+      - ssh_ver
+      - timestamp
     ServerConfig:
       allOf:
       - $ref: '#/components/schemas/Config'
@@ -603,341 +883,6 @@ components:
         wals_directory:
           description: Directory which contains WAL files
           type: string
-    Wals:
-      type: object
-      properties:
-        last_archived_wal_per_timeline:
-          description: 'Details of the most recently archived WAL on the Barman server keyed by timeline.
-
-            '
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/LastArchivedWal'
-      required:
-      - last_archived_wal_per_timeline
-    LastArchivedWal:
-      type: object
-      properties:
-        compression:
-          description: Compression algorithm used to compress the WAL
-          type:
-          - string
-          - 'null'
-        name:
-          description: Name of the WAL segment
-          type: string
-        size:
-          description: Size in bytes of the WAL stored on the Barman server
-          type: integer
-          format: int64
-        time:
-          description: 'Timestamp in epoch time format representing the time this WAL was archived by Barman
-
-            '
-          type: number
-    ReplicationSlot:
-      description: 'Details of the replication slot being used by Barman on this PostgreSQL server in the form of an ordered array. The first item MUST be a string containing the slot_name. The second item MUST be a boolean reflecting the active state of the replication slot. The third item MUST be a string containing the LSN of the oldest WAL which still might be required by the consumer of this slot.
-
-        '
-      type:
-      - array
-      - 'null'
-      items: {}
-      maxItems: 3
-      minItems: 3
-    SystemInfo:
-      type: object
-      properties:
-        barman_ver:
-          description: Version of Barman which generated the diagnose output
-          type: string
-        kernel_ver:
-          description: Information about the OS kernel on which Barman server is running
-          type: string
-        python_ver:
-          description: Version of Python used by Barman server
-          type: string
-        release:
-          description: 'Information about the specific OS release on which Barman server is running
-
-            '
-          type: string
-        rsync_ver:
-          description: Version of Rsync used by Barman server
-          type: string
-        ssh_ver:
-          description: Version of ssh used by Barman server
-          type: string
-        timestamp:
-          description: 'The system time of the Barman server (in ISO 8601 format in the local timezone of the server)
-
-            '
-          type: string
-          pattern: ^\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+[+-][0-2]\d:[0-5]\d$
-          example: '2020-01-31T00:00:00.0000+01:00'
-      required:
-      - barman_ver
-      - kernel_ver
-      - python_ver
-      - release
-      - rsync_ver
-      - ssh_ver
-      - timestamp
-    Status:
-      description: Status information about the PostgreSQL server
-      type: object
-      properties:
-        archive_command:
-          description: The current value of archive_command on the PostgreSQL server
-          type:
-          - string
-          - 'null'
-        archive_mode:
-          description: The current value of archive_mode on the PostgreSQL server
-          type:
-          - string
-          - 'null'
-        archive_timeout:
-          description: 'The current value of archive_timeout (in seconds) on the PostgreSQL server
-
-            '
-          type: integer
-        archived_count:
-          description: 'The number of WAL files that have been successfully archived by the PostgreSQL server
-
-            '
-          type: integer
-        checkpoint_timeout:
-          description: 'The current value of checkpoint_timeout (in seconds) on the PostgreSQL server
-
-            '
-          type: integer
-        config_file:
-          description: 'The current path to the `postgresql.conf` file of the PostgreSQL server
-
-            '
-          type: string
-        connection_error:
-          description: 'Error message in the event that barman cannot connect to the PostgreSQL server
-
-            '
-          type: string
-        current_archived_wals_per_second:
-          description: 'The WAL archive rate of the PostgreSQL server calculated over the time since the last stats reset
-
-            '
-          type: number
-        current_lsn:
-          description: The current LSN of the PostgreSQL server
-          type: string
-        current_size:
-          description: The total size of the PostgreSQL server in bytes
-          type: number
-        current_xlog:
-          description: The current WAL of the PostgreSQL server
-          type:
-          - string
-          - 'null'
-        data_checksums:
-          description: 'Whether data checksums are enabled for the PostgreSQL server - can be either `on` or `off`
-
-            '
-          type: string
-        data_directory:
-          description: The current path to the PGDATA directory of the PostgreSQL server
-          type:
-          - string
-          - 'null'
-        failed_count:
-          description: 'The number of failed attempts for archiving WAL files by the PostgreSQL server
-
-            '
-          type: integer
-        has_backup_privileges:
-          description: 'Whether the configured user has the PostgreSQL privileges required in order to take a backup
-
-            '
-          type: boolean
-        hba_file:
-          description: The current path to the `pg_hba.conf` file of the PostgreSQL server
-          type: string
-        hot_standby:
-          description: The current value of hot_standby on the PostgreSQL server
-          type: string
-        ident_file:
-          description: 'The current path to the `pg_ident.conf` file of the PostgreSQL server
-
-            '
-          type: string
-        is_archiving:
-          description: 'Whether the PostgreSQL server is currently archiving WALs (as determined by Barman from the content of `pg_stat_archiver`)
-
-            '
-          type: boolean
-        is_in_recovery:
-          description: 'Whether the PostgreSQL server is currently in recovery (as determined by Barman using `pg_is_in_recovery()`)
-
-            '
-          type:
-          - boolean
-          - 'null'
-        is_superuser:
-          description: Whether the configured user has superuser privileges
-          type:
-          - boolean
-          - 'null'
-        last_archived_time:
-          description: 'The time that a WAL was most recently archived by PostgreSQL (in ISO 8601 in the local timezone of the server)
-
-            '
-          type: string
-          pattern: ^\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+[+-][0-2]\d:[0-5]\d$
-          example: '2020-01-31T00:00:00.0000+01:00'
-        last_archived_wal:
-          description: The WAL segment which was most recently archived by PostgreSQL
-          type: string
-        last_failed_time:
-          description: 'The time of the most recent WAL archive failure on the PostgreSQL server (in ISO 8601 in the local timezone of the server)
-
-            '
-          type:
-          - string
-          - 'null'
-          pattern: ^\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+[+-][0-2]\d:[0-5]\d$
-          example: '2020-01-31T00:00:00.0000+01:00'
-        last_failed_wal:
-          description: 'The WAL segment which was being archived during the most recent failed WAL archive attempt
-
-            '
-          type:
-          - string
-          - 'null'
-        max_replication_slots:
-          description: The current value of max_replication_slots on the PostgreSQL server
-          type: string
-        max_wal_senders:
-          description: The current value of max_wal_senders on the PostgreSQL server
-          type: string
-        pg_receivexlog_compatible:
-          description: 'Whether the pg_receivewal binary used by Barman is compatible with the PostgreSQL server
-
-            '
-          type:
-          - boolean
-          - 'null'
-        pg_receivexlog_installed:
-          description: 'Whether the pg_receivewal binary is installed and available to Barman
-
-            '
-          type:
-          - boolean
-          - 'null'
-        pg_receivexlog_path:
-          description: 'Path to the pg_receivewal binary used by Barman
-
-            '
-          type:
-          - string
-          - 'null'
-        pg_receivexlog_supports_slots:
-          description: 'Whether the pg_receivewal binary available to Barman supports replication slots
-
-            '
-          type:
-          - boolean
-          - 'null'
-        pg_receivexlog_synchronous:
-          description: 'Whether synchronous replication will be used by pg_receivewal for this PostgreSQL server
-
-            '
-          type:
-          - boolean
-          - 'null'
-        pg_receivexlog_version:
-          description: The version of the pg_receivewal binary used by Barman
-          type:
-          - string
-          - 'null'
-        postgresql_systemid:
-          description: The system identifier of the PostgreSQL server
-          type:
-          - string
-          - 'null'
-        replication_slot:
-          $ref: '#/components/schemas/ReplicationSlot'
-        replication_slot_support:
-          description: Whether the PostgreSQL server supports replication slots
-          type:
-          - boolean
-          - 'null'
-        server_txt_version:
-          description: The version of the PostgreSQL server as human-readable text
-          type:
-          - string
-          - 'null'
-        stats_reset:
-          description: 'The time at which statistics were last reset for this PostgreSQL server (in ISO 8601 format in UTC)
-
-            '
-          type: string
-          pattern: ^\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+[+-][0-2]\d:[0-5]\d$
-          example: '2020-01-31T00:00:00.0000+01:00'
-        streaming:
-          description: Whether the streaming_conninfo connection is currently streaming
-          type:
-          - boolean
-          - 'null'
-        streaming_supported:
-          description: Whether streaming replication is supported by the PostgreSQL server
-          type:
-          - boolean
-          - 'null'
-        streaming_systemid:
-          description: 'The systemid returned by calling IDENTIFY_SYSTEM using the streaming_conninfo connection
-
-            '
-          type:
-          - string
-          - 'null'
-        synchronous_standby_names:
-          description: 'The current value of synchronous_standby_names on the PostgreSQL server
-
-            '
-          type:
-          - array
-          - 'null'
-          items:
-            description: 'Name of a standby server which can support synchronous replication
-
-              '
-            type: string
-        timeline:
-          description: The current timeline of the PostgreSQL server
-          type:
-          - integer
-          - 'null'
-        wal_compression:
-          description: The current value of wal_compression on the PostgreSQL server
-          type: string
-        wal_keep_size:
-          description: The current value of wal_keep_size on the PostgreSQL server
-          type: string
-        wal_level:
-          description: The current value of wal_level on the PostgreSQL server
-          type: string
-        xlog_segment_size:
-          description: 'The current WAL segment size in bytes as reported by the PostgreSQL server
-
-            '
-          type: integer
-          format: int64
-        xlogpos:
-          description: 'The current WAL flush location returned by the streaming_conninfo connection
-
-            '
-          type:
-          - string
-          - 'null'
     Backups:
       description: 'Details of each backup stored by Barman for this server keyed by Backup ID.
 
@@ -1123,3 +1068,58 @@ components:
             - integer
             - 'null'
             format: int64
+    ReplicationSlot:
+      description: 'Details of the replication slot being used by Barman on this PostgreSQL server in the form of an ordered array. The first item MUST be a string containing the slot_name. The second item MUST be a boolean reflecting the active state of the replication slot. The third item MUST be a string containing the LSN of the oldest WAL which still might be required by the consumer of this slot.
+
+        '
+      type:
+      - array
+      - 'null'
+      items: {}
+      maxItems: 3
+      minItems: 3
+    Wals:
+      type: object
+      properties:
+        last_archived_wal_per_timeline:
+          description: 'Details of the most recently archived WAL on the Barman server keyed by timeline.
+
+            '
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/LastArchivedWal'
+      required:
+      - last_archived_wal_per_timeline
+    DiagnoseOutput:
+      type: object
+      required:
+      - global
+      - servers
+      properties:
+        global:
+          type: object
+          properties:
+            config:
+              $ref: '#/components/schemas/GlobalConfig'
+            system_info:
+              $ref: '#/components/schemas/SystemInfo'
+          required:
+          - system_info
+        servers:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              backups:
+                $ref: '#/components/schemas/Backups'
+              config:
+                $ref: '#/components/schemas/ServerConfig'
+              status:
+                $ref: '#/components/schemas/Status'
+              wals:
+                $ref: '#/components/schemas/Wals'
+            required:
+            - backups
+            - config
+            - status
+            - wals
