@@ -19,6 +19,12 @@ tags:
 - Database
 - PostgreSQL
 - Enterprise
+- Open Source
+tags_raw:
+- Company
+- Database
+- PostgreSQL
+- Enterprise
 - OpenSource
 maintainers:
 - FN: Kin Lane
@@ -102,6 +108,8 @@ apis:
   description: The utility API from EDB — 2 operation(s) for utility.
   humanURL: https://github.com/EnterpriseDB/pg-backup-api
   tags:
+  - Utility
+  tags_raw:
   - utility
   properties:
   - type: OpenAPI
